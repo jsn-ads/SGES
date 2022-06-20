@@ -19,6 +19,8 @@ class HomeController extends Controller
 
     public function index() 
     {
-        $this->render('home', ['nome' => 'JSNSYSTEMAS']);
+        $this->render('home', [
+                                'user' => $this->user
+                              ]);
     }
 }

@@ -29,6 +29,56 @@ class UserHelpers
 
         return false;
     }
+
+    // verifica se possui registro no sistema para acessar
+    public static function verifyLogin($email , $password)
+    {
+        $user = USER::select()
+                            ->where('email',$email)
+                        ->one();
+        if($user)
+        {
+            if(password_verify($password, $user['password']))
+            {
+                $token = md5(time().rand(0,9999).time());
+
+                User::update()
+                            ->set('token',$token)
+                            ->where('email',$email)
+                        ->execute();
+                
+                return $token;
+            }
+        }
+
+        return false;
+    }
+
+    // verifica se ja existe email cadastrado
+    public static function emailExists($email){
+
+        $sql = User::select()
+                            ->where('email',$email)
+                        ->one();
+        return $sql ? true : false;
+
+    }
+
+    // cadastro de usuario
+    public static function addUser($nome , $email , $password)
+    {
+        $hash = password_hash($password , PASSWORD_DEFAULT);
+        $token = md5(time().rand(0,9999).md5(time()));
+
+        User::insert([
+                'nome'     => $nome,
+                'email'    => $email,
+                'password' => $hash,
+                'token'    => $token
+            ])->execute();
+
+        return $token;
+    }
 }
 
 ?>

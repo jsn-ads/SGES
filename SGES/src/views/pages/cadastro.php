@@ -21,6 +21,12 @@
                 
                 <form action="<?= $base;?>/cadastrar" method="post">
 
+                    <?php if(!empty($flash)):?>
+                        <div class="alert alert-danger">
+                            <?= $flash;?>
+                        </div>
+                    <?php endif;?>
+
                     <div class="form-group">
                         <input placeholder="Nome" type="nome" class="form-control" id="nome" name="nome" required>
                     </div>
