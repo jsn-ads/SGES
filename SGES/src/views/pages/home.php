@@ -1,3 +1,8 @@
-<?php $render('header'); ?>
+<?php 
+    $render('header',[
+                        'titulo' => $titulo,
+                        'user'   => $user
+                     ]); 
+?>
 
-Opa, <?=$user->nome;?>
+<?php $render('footer');?>
