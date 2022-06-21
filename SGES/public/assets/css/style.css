@@ -37,7 +37,7 @@ a
 .logo img
 {
     margin-top: 35%;
-    width: 100%;
+    width: 95%;
     height: 100%;
 }
 
@@ -77,4 +77,23 @@ button:hover
     height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+/* CARD */
+.card
+{
+    width: 80%;
+    border: 1px solid #1a8ac2;
+}
+
+.card-header{
+    font-size: 15px;
+    font-weight: bold;
+    color: #1a8ac2;
+}
+
+.card input
+{
+    text-align: center;
 }

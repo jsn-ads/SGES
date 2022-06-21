@@ -48,6 +48,17 @@ class AuthController extends Controller
         }
     }
 
+    // metodo GET de sair
+    public function logout()
+    {
+        if($_SESSION['token'])
+        {
+            $_SESSION['token'] = null;
+        }
+
+        $this->redirect('/');
+    }
+
     // metodo GET cadastro
     public function cadastro()
     {

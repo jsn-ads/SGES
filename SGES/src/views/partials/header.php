@@ -18,19 +18,19 @@
        <a href="<?= $base;?>"><img src="<?= $base;?>/assets/img/logo.png" alt=""></a>
     </div>
     <div class="submenu">
-
-        <button class="btn-menu" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <a href="">Home</a>
-        </button>
-
+        
+        <a href="<?= $base;?>">
+            <button class="btn-menu">Home</button>
+        </a>
+        
         <div class="dropdown">
             <button class="btn-menu dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 <?= ucwords($user->nome);?>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Cadastro</a></li>
+                <li><a class="dropdown-item" href="<?= $base;?>/pessoa">Cadastro</a></li>
                 <li><a class="dropdown-item" href="#">Configurações</a></li>
-                <li><a class="dropdown-item" href="#">Sair</a></li>
+                <li><a class="dropdown-item" href="<?= $base;?>/logout">Sair</a></li>
             </ul>
         </div>
 
@@ -44,6 +44,6 @@
             </ul>
         </div>
 
-        <button class="btn-menu"></button>
+        <button class="btn-menu" disabled></button>
     </div>
 </div>
