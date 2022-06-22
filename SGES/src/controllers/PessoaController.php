@@ -24,4 +24,9 @@ class PessoaController extends Controller
                                             'user'   => $this->user
                                         ]);
     }
+
+    public function cadastro()
+    {
+        
+    }
 }

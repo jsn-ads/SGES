@@ -29,7 +29,7 @@
                         
                 <div class="row mb-3">
                     <div class="col-sm-12">
-                        <input placeholder="Nome Completo" type="text" class="form-control" id="nome" name="nome" required>
+                        <input placeholder="Nome Completo" type="text" class="form-control" id="nome" name="nome" required maxlength="200">
                     </div>
                 </div>
 
@@ -39,41 +39,41 @@
                     </div>
 
                     <div class="col-sm-6">
-                        <input placeholder="Telefone" type="text" class="form-control" id="telefone" name="telefone" required>
+                        <input placeholder="Telefone" type="text" class="form-control" id="telefone" name="telefone" required maxlength="15">
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-sm-12">
-                        <input placeholder="Rua" type="text" class="form-control" id="rua" name="rua" required>
+                        <input placeholder="Rua" type="text" class="form-control" id="rua" name="rua" required maxlength="200">
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-sm-6">
-                        <input placeholder="CEP" type="text" class="form-control" id="cep" name="cep" required>
+                        <input placeholder="CEP" type="text" class="form-control" id="cep" name="cep" required maxlength="10">
                     </div>
 
                     <div class="col-sm-2">
-                        <input placeholder="Quadra" type="text" class="form-control" id="qd" name="qd" required>
+                        <input placeholder="Quadra" type="text" class="form-control" id="qd" name="qd" required maxlength="5">
                     </div>
 
                     <div class="col-sm-2">
-                        <input placeholder="Lote" type="text" class="form-control" id="lt" name="lt" required>
+                        <input placeholder="Lote" type="text" class="form-control" id="lt" name="lt" required maxlength="5">
                     </div>
 
                     <div class="col-sm-2">
-                        <input placeholder="Nº" type="text" class="form-control" id="num" name="num" required>
+                        <input placeholder="Nº" type="text" class="form-control" id="num" name="num" required maxlength="5">
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-sm-6">
-                        <input placeholder="Bairro" type="text" class="form-control" id="bairro" name="bairro" required>
+                        <input placeholder="Bairro" type="text" class="form-control" id="bairro" name="bairro" required maxlength="200">
                     </div>
 
                     <div class="col-sm-4">
-                        <input placeholder="Cidade" type="text" class="form-control" id="cidade" name="cidade" required>
+                        <input placeholder="Cidade" type="text" class="form-control" id="cidade" name="cidade" required maxlength="200">
                     </div>
 
                     <div class="col-sm-2">
