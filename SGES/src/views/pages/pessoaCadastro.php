@@ -19,11 +19,11 @@
                         
                 <div class="row mb-3">
                     <div class="col-sm-2">
-                        <input placeholder="ID" type="text" class="form-control" id="id" name="id" disabled>
+                        <input placeholder="ID" type="hidden" class="form-control" id="id" name="id" value="">
                     </div>
 
                     <div class="col-sm-2">
-                        <input placeholder="ID USER" type="text" class="form-control" id="id_user" name="id_user" disabled>
+                        <input placeholder="ID USER" type="hidden" class="form-control" id="id_user" name="id_user" value="<?= $user->id;?>">
                     </div>
                 </div>
                         
@@ -77,7 +77,7 @@
                     </div>
 
                     <div class="col-sm-2">
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" id="estado" name="estado">
                             <option selected>Estado</option>
                             <option value="AC">Acre</option>
                             <option value="AL">Alagoas</option>

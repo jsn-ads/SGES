@@ -6,18 +6,18 @@ $(document).ready(function(){
     $('#lt').mask('00000');
     $('#num').mask('00000');
 
-    $('#nome').mask("#", {
-        maxlength: true,
-        translation: {
-            '#': {pattern: /[A-zÀ-ÿ]/, recursive: true}
-        }
-    });
+    // $('#nome').mask("#", {
+    //     maxlength: true,
+    //     translation: {
+    //         '#': {pattern: /[A-z À-ÿ]/, recursive: true}
+    //     }
+    // });
 
-    $('#cidade').mask("#", {
-        maxlength: true,
-        translation: {
-            '#': {pattern: /[A-zÀ-ÿ]/, recursive: true}
-        }
-    });
+    // $('#cidade').mask("#", {
+    //     maxlength: true,
+    //     translation: {
+    //         '#': {pattern: /[A-z À-ÿ]/, recursive: true}
+    //     }
+    // });
 
 });

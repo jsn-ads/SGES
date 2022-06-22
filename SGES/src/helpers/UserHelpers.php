@@ -79,6 +79,51 @@ class UserHelpers
 
         return $token;
     }
+
+    // cadastro de pessoa
+    public static function addPessoa($id_user, $nome, $telefone, $data_nasc, $cep, $rua, $qd, $lt, $num, $bairro, $cidade, $estado)
+    {
+
+        echo 't1';
+
+        User::insert([
+                'id_user'   => $id_user,
+                'nome'      => $nome,
+                'telefone'  => $telefone,
+                'data_nasc' => $data_nasc,
+                'cep'       => $cep,
+                'rua'       => $rua,
+                'qd'        => $qd,
+                'lt'        => $lt,
+                'num'       => $num,
+                'bairro'    => $bairro,
+                'cidade'    => $cidade,
+                'estado'    => $estado
+        ])->execute();
+
+    }
+
+    // editar pessoa
+    public static function editPessoa($id , $nome, $telefone, $data_nasc, $cep, $rua, $qd, $lt, $num, $bairro, $cidade, $estado)
+    {
+
+        echo 't2';
+        
+        User::update()
+                    ->set('nome',$nome)
+                    ->set('telefone',$telefone)
+                    ->set('data_nasc',$data_nasc)
+                    ->set('cep',$cep)
+                    ->set('rua',$rua)
+                    ->set('qd',$qd)
+                    ->set('lt',$lt)
+                    ->set('num',$num)
+                    ->set('bairro',$bairro)
+                    ->set('cidade',$cidade)
+                    ->set('estado',$estado)
+                    ->where('id',$id)
+                ->execute();
+    }
 }
 
 ?>
