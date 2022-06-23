@@ -3,6 +3,7 @@
 namespace src\helpers;
 
 use src\models\User;
+use src\models\Pessoa;
 
 class UserHelpers
 {
@@ -84,21 +85,19 @@ class UserHelpers
     public static function addPessoa($id_user, $nome, $telefone, $data_nasc, $cep, $rua, $qd, $lt, $num, $bairro, $cidade, $estado)
     {
 
-        echo 't1';
-
-        User::insert([
-                'id_user'   => $id_user,
-                'nome'      => $nome,
-                'telefone'  => $telefone,
-                'data_nasc' => $data_nasc,
-                'cep'       => $cep,
-                'rua'       => $rua,
-                'qd'        => $qd,
-                'lt'        => $lt,
-                'num'       => $num,
-                'bairro'    => $bairro,
-                'cidade'    => $cidade,
-                'estado'    => $estado
+        Pessoa::insert([
+                    'nome'      => $nome,
+                    'data_nasc' => $data_nasc,
+                    'telefone'  => $telefone,
+                    'cep'       => $cep,
+                    'rua'       => $rua,
+                    'qd'        => $qd,
+                    'lt'        => $lt,
+                    'num'       => $num,
+                    'bairro'    => $bairro,
+                    'cidade'    => $cidade,
+                    'estado'    => $estado,
+                    'id_user'   => $id_user
         ])->execute();
 
     }
@@ -106,10 +105,7 @@ class UserHelpers
     // editar pessoa
     public static function editPessoa($id , $nome, $telefone, $data_nasc, $cep, $rua, $qd, $lt, $num, $bairro, $cidade, $estado)
     {
-
-        echo 't2';
-        
-        User::update()
+        Pessoa::update()
                     ->set('nome',$nome)
                     ->set('telefone',$telefone)
                     ->set('data_nasc',$data_nasc)
@@ -123,6 +119,37 @@ class UserHelpers
                     ->set('estado',$estado)
                     ->where('id',$id)
                 ->execute();
+
+    }
+
+    // carrega dados do usuario
+    public static function selectCadastro($id)
+    {
+        $sql = Pessoa::select()
+                            ->where('id_user',$id)
+                        ->one();
+
+        if(!empty($sql))
+        {
+            $cadastro               = new Pessoa();
+            $cadastro->id           = $sql['id'];
+            $cadastro->nome         = $sql['nome'];
+            $cadastro->data_nasc    = $sql['data_nasc'];
+            $cadastro->telefone     = $sql['telefone'];
+            $cadastro->cep          = $sql['cep'];
+            $cadastro->rua          = $sql['rua'];
+            $cadastro->qd           = $sql['qd'];
+            $cadastro->lt           = $sql['lt'];
+            $cadastro->num          = $sql['num'];
+            $cadastro->bairro       = $sql['bairro'];
+            $cadastro->cidade       = $sql['cidade'];
+            $cadastro->estado       = $sql['estado'];
+            $cadastro->id_user      = $sql['id_user'];
+
+            return $cadastro;
+        }
+
+        return false;
     }
 }
 

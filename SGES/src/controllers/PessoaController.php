@@ -2,8 +2,8 @@
 namespace src\controllers;
 
 use \core\Controller;
-use EmptyIterator;
 use src\helpers\UserHelpers;
+use src\models\User;
 
 class PessoaController extends Controller 
 {
@@ -21,19 +21,28 @@ class PessoaController extends Controller
     public function index() 
     {
 
-        $flash = '';
+        $noticicacao = [];
+        $cadastro = '';
 
-        if(!empty($_SESSION['flash']))
+        if(!empty($_SESSION['msg']))
         {
-            $flash = $_SESSION['flash'];
+            $noticicacao['msg']  = $_SESSION['msg'];
+            $noticicacao['tipo'] = $_SESSION['tipo'];
 
-            $_SESSION['flash'] = '';
+            $_SESSION['msg']  = '';
+            $_SESSION['tipo'] = '';
+        }
+
+        if(UserHelpers::selectCadastro($this->user->id))
+        {
+            $cadastro = UserHelpers::selectCadastro($this->user->id);
         }
 
         $this->render('pessoaCadastro', [
-                                            'titulo' => 'Cadastro',
-                                            'user'   => $this->user,
-                                            'flash'  => $flash
+                                            'titulo'       => 'Cadastro',
+                                            'user'         => $this->user,
+                                            'notificacao'  => $noticicacao,
+                                            'cadastro'     => $cadastro
                                         ]);
     }
 
@@ -54,32 +63,49 @@ class PessoaController extends Controller
         $cidade     = filter_input(INPUT_POST,'cidade');
         $estado     = filter_input(INPUT_POST,'estado');
 
-        echo 'id= '. $id;
-        echo 'id_user= '. $id_user;
-        echo $nome;       
-        echo $telefone;   
-        echo $data_nasc;
-        echo $cep;        
-        echo $rua;        
-        echo $qd;       
-        echo $lt;         
-        echo $num;        
-        echo $bairro;     
-        echo $cidade;     
-        echo $estado;     
+        $data_nasc = explode('/', $data_nasc);
 
+
+        if(strlen($telefone) != 15)
+        {
+            $_SESSION['msg']  = 'Telefone invalido';
+            $_SESSION['tipo'] = 'danger';
+            $this->redirect('/pessoa');
+        }
+
+        if(strlen($cep) != 10)
+        {
+            $_SESSION['msg']  = 'Cep invalido';
+            $_SESSION['tipo'] = 'danger';
+            $this->redirect('/pessoa');
+        }
+
+        if(count($data_nasc) != 3)
+        {
+            $_SESSION['msg']  = 'Data invalida';
+            $_SESSION['tipo'] = 'danger';
+            $this->redirect('/pessoa');
+        }
+
+        $data_nasc = $data_nasc[2].'-'.$data_nasc[1].'-'.$data_nasc[0];
+ 
         if($id_user && $nome && $telefone && $data_nasc && $cep && $rua && $qd && $lt && $num && $bairro && $cidade && $estado)
         {
-
-            echo 'th';
 
             if(empty($id))
             {
                 UserHelpers::addPessoa($id_user, $nome, $telefone, $data_nasc, $cep, $rua, $qd, $lt, $num, $bairro, $cidade, $estado);
+                $_SESSION['msg']  = 'Cadastro Adicionado com Sucesso';
+                $_SESSION['tipo'] = 'primary';
+               
             }
+            
             else
             {
-                UserHelpers::editPessoa($id , $id_user, $nome, $telefone, $data_nasc, $cep, $rua, $qd, $lt, $num, $bairro, $cidade, $estado);
+                UserHelpers::editPessoa($id , $nome, $telefone, $data_nasc, $cep, $rua, $qd, $lt, $num, $bairro, $cidade, $estado);
+                $_SESSION['msg']  = 'Cadastro Atualizado com Sucesso';
+                $_SESSION['tipo'] = 'info';
+                
             }
         }
 

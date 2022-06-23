@@ -36,7 +36,7 @@ a
 
 .logo img
 {
-    margin-top: 35%;
+    margin-top: 10%;
     width: 95%;
     height: 100%;
 }
@@ -96,4 +96,23 @@ button:hover
 .card input
 {
     text-align: center;
+}
+
+
+/*ALERT*/
+
+.alert
+{
+    display: flex;
+    justify-content: center;
+}
+
+.alert1
+{
+    width: 95%;
+}
+
+.alert2
+{
+    width: 5%;
 }
