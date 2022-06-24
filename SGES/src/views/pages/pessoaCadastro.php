@@ -9,7 +9,7 @@
     
     <div class="card text-center">
 
-        <div class="card-header">
+        <div class="card-header <?= $user->card;?>">
             Dados Pessoais
         </div>
 
@@ -118,8 +118,8 @@
 
             </div>
 
-            <div class="card-footer text-muted">
-                <input id="btn-login" class="btn btn-outline-success" type="submit" value="Salvar">
+            <div class="card-footer text-muted <?= $user->card;?>">
+                <input id="btn-login" class="btn btn-<?= $user->navBar;?>" type="submit" value="Salvar">
             </div>
 
         </form>

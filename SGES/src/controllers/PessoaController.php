@@ -3,7 +3,6 @@ namespace src\controllers;
 
 use \core\Controller;
 use src\helpers\UserHelpers;
-use src\models\User;
 
 class PessoaController extends Controller 
 {
@@ -49,19 +48,19 @@ class PessoaController extends Controller
     public function cadastro()
     {
 
-        $id         = filter_input(INPUT_POST,'id');
-        $id_user    = filter_input(INPUT_POST,'id_user');
-        $nome       = filter_input(INPUT_POST,'nome');
-        $telefone   = filter_input(INPUT_POST,'telefone');
-        $data_nasc  = filter_input(INPUT_POST,'data_nasc');
-        $cep        = filter_input(INPUT_POST,'cep');
-        $rua        = filter_input(INPUT_POST,'rua');
-        $qd         = filter_input(INPUT_POST,'qd');
-        $lt         = filter_input(INPUT_POST,'lt');
-        $num        = filter_input(INPUT_POST,'num');
-        $bairro     = filter_input(INPUT_POST,'bairro');
-        $cidade     = filter_input(INPUT_POST,'cidade');
-        $estado     = filter_input(INPUT_POST,'estado');
+        $id         =  filter_input(INPUT_POST,'id');
+        $id_user    =  filter_input(INPUT_POST,'id_user');
+        $nome       =  filter_input(INPUT_POST,'nome');
+        $telefone   =  filter_input(INPUT_POST,'telefone');
+        $data_nasc  =  filter_input(INPUT_POST,'data_nasc');
+        $cep        =  filter_input(INPUT_POST,'cep');
+        $rua        =  filter_input(INPUT_POST,'rua');
+        $qd         =  filter_input(INPUT_POST,'qd');
+        $lt         =  filter_input(INPUT_POST,'lt');
+        $num        =  filter_input(INPUT_POST,'num');
+        $bairro     =  filter_input(INPUT_POST,'bairro');
+        $cidade     =  filter_input(INPUT_POST,'cidade');
+        $estado     =  filter_input(INPUT_POST,'estado');
 
         $data_nasc = explode('/', $data_nasc);
 
@@ -111,5 +110,65 @@ class PessoaController extends Controller
 
         $this->redirect('/pessoa');
        
+    }
+
+    public function config()
+    {
+        $noticicacao = [];
+        $cadastro = '';
+
+        if(!empty($_SESSION['msg']))
+        {
+            $noticicacao['msg']  = $_SESSION['msg'];
+            $noticicacao['tipo'] = $_SESSION['tipo'];
+
+            $_SESSION['msg']  = '';
+            $_SESSION['tipo'] = '';
+        }
+
+        $this->render('pessoaConfig', [
+                                            'titulo'       => 'Configuracao',
+                                            'user'         => $this->user,
+                                            'notificacao'  => $noticicacao,
+                                            'cadastro'     => $cadastro
+                                        ]);
+    }
+
+    public function configAction()
+    {
+        $nome       = trim(filter_input(INPUT_POST, 'nome'));
+        $password   = trim(filter_input(INPUT_POST, 'password'));
+
+        if(strlen($password) < 4 || strlen($password) > 8)
+        {
+            $_SESSION['msg'] = 'Senha deve possui de 4 a 8 caracteres';
+            $_SESSION['tipo'] = 'danger';
+
+            $this->redirect('/config');
+        }
+
+        UserHelpers::updateUser($this->user->id , $nome, $password);
+
+        $_SESSION['msg']  = 'Dados Atualizado com sucesso';
+        $_SESSION['tipo'] = 'info';
+        $this->redirect('/config');
+
+    }
+
+    public function rgb()
+    {
+        $tipo = filter_input(INPUT_POST,'tipo');
+        $rgb  = filter_input(INPUT_POST,'rgb');
+
+        switch($tipo){
+            case 'menu':
+                UserHelpers::RGBMenu($this->user->id, $rgb);
+                break;
+            case 'card':
+                UserHelpers::RGBCard($this->user->id, $rgb);
+                break;
+        }
+
+        $this->redirect('/config');
     }
 }

@@ -13,29 +13,29 @@
 
 <body>
 
-<div class="menu">
+<div class="menu <?= $user->navBar;?>">
     <div class="logo">
        <a href="<?= $base;?>"><img src="<?= $base;?>/assets/img/logo.png" alt=""></a>
     </div>
     <div class="submenu">
         
         <a href="<?= $base;?>">
-            <button class="btn-menu">Home</button>
+            <button class="btn-menu-<?= $user->navBar;?>">Home</button>
         </a>
         
-        <div class="dropdown">
-            <button class="btn-menu dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="dropdown dropdown">
+            <button class="btn-menu-<?= $user->navBar;?> dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 <?= ucwords($user->nome);?>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="<?= $base;?>/pessoa">Cadastro</a></li>
-                <li><a class="dropdown-item" href="#">Configurações</a></li>
+                <li><a class="dropdown-item" href="<?= $base;?>/config">Configurações</a></li>
                 <li><a class="dropdown-item" href="<?= $base;?>/logout">Sair</a></li>
             </ul>
         </div>
 
         <div class="dropdown">
-            <button class="btn-menu dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn-menu-<?= $user->navBar;?> dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 Contas
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -44,6 +44,6 @@
             </ul>
         </div>
 
-        <button class="btn-menu" disabled></button>
+        <button class="btn-menu-<?= $user->navBar;?>" disabled></button>
     </div>
 </div>

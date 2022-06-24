@@ -25,3 +25,11 @@ $router->get('/' , 'HomeController@index');
 $router->get('/pessoa'  , 'PessoaController@index');
 
 $router->post('/pessoa' , 'PessoaController@cadastro');
+
+//Configuração
+
+$router->get('/config'  , 'PessoaController@config');
+
+$router->post('/config' , 'PessoaController@configAction');
+
+$router->post('/rgb'    , 'PessoaController@rgb');

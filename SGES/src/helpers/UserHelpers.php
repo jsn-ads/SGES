@@ -23,6 +23,8 @@ class UserHelpers
                 $user->email  = $sql['email'];
                 $user->nome   = $sql['nome'];
                 $user->token  = $sql['token'];
+                $user->navBar = $sql['navBar'];
+                $user->card   = $sql['card'];
 
                 return $user;
             }
@@ -150,6 +152,38 @@ class UserHelpers
         }
 
         return false;
+    }
+
+    //atualiza nome e senha 
+
+    public static function updateUser($id , $nome, $password)
+    {
+
+        $hash = password_hash($password , PASSWORD_DEFAULT);
+
+        User::update()
+                    ->set('nome'    , $nome)
+                    ->set('password', $hash)
+                    ->where('id'    , $id)
+                ->execute();
+    }
+
+    //RGB
+
+    public static function RGBMenu($id,$rgb)
+    {
+        User::update()
+                    ->set('navBar' , $rgb)
+                    ->where('id'   , $id)
+                ->execute();
+    }
+
+    public static function RGBCard($id,$rgb)
+    {
+        User::update()
+                    ->set('card' , $rgb)
+                    ->where('id' , $id)
+                ->execute();
     }
 }
 
